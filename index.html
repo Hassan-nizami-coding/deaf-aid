@@ -61,7 +61,7 @@
         }
 
         const recognition = new SpeechRecognition();
-        recognition.lang = "en-US";
+        recognition.lang = "en-GB";
         recognition.interimResults = false;
         recognition.maxAlternatives = 1;
 
@@ -73,10 +73,19 @@
           const transcript = event.results[0][0].transcript;
           output.textContent = transcript;
         };
+recognition.onerror = function (event) {
+  let message = "Error: " + event.error;
+  if (event.error === "language-not-supported") {
+    message += " — Try using a supported language like 'en-US' or check your browser’s language settings.";
+  } else if (event.error === "network") {
+    message += " — Please check your internet connection.";
+  } else if (event.error === "not-allowed") {
+    message += " — Make sure you’ve granted microphone access.";
+  }
+  output.textContent = message;
+};
 
-        recognition.onerror = function (event) {
-          output.textContent = "Error: " + event.error;
-        };
+        
       }
     </script>
   </body>
