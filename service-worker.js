@@ -1,9 +1,10 @@
 const CACHE_NAME = "blind-assistant-cache-v1";
 const urlsToCache = [
-  "index.html",
-  "lib/tf.min.js",
-  "lib/coco-ssd.min.js"
+  "/deaf-aid/index.html",
+  "/deaf-aid/lib/tf.min.js",
+  "/deaf-aid/lib/coco-ssd.min.js"
 ];
+
 
 self.addEventListener("install", event => {
   event.waitUntil(
